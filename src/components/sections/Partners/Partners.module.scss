@@ -1,0 +1,69 @@
+@use 'abstracts' as *;
+
+$logo-widths: (
+  'brave': 95,
+  'circle': 118,
+  'discord': 105,
+  'google': 80,
+  'jump': 80,
+  'lolla': 108,
+  'magic': 138,
+);
+
+.partners {
+  position: relative;
+  z-index: z('content');
+  padding-bottom: fluid(48, 96);
+
+  &__title {
+    font-size: fluid(11, 20);
+    font-weight: $font-weight-regular;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    color: $color-sky;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: rem(28) rem(16);
+    margin-top: fluid(24, 36);
+
+    @include mq(sm) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    @include mq(lg) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    transition:
+      opacity $duration-base,
+      transform $duration-base $ease-out;
+
+    @include hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    @each $name, $width in $logo-widths {
+      &--#{$name} .partners__img {
+        width: fluid($width * 0.7, $width);
+      }
+    }
+  }
+
+  &__img {
+    display: block;
+    height: auto;
+  }
+}

@@ -1,0 +1,26 @@
+@use 'abstracts' as *;
+
+$coins: url('../../../assets/images/cta/glass-coins.jpg');
+
+.glass-shape {
+  position: absolute;
+  display: block;
+  background-image: $coins;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  pointer-events: none;
+
+  &--top {
+    width: fluid(64, 96);
+    aspect-ratio: 210 / 178;
+    background-size: 666.67% auto;
+    background-position: 83.61% 10.59%;
+  }
+
+  &--bottom {
+    width: fluid(80, 120);
+    aspect-ratio: 240 / 190;
+    background-size: 583.33% auto;
+    background-position: 7.33% 88.04%;
+  }
+}

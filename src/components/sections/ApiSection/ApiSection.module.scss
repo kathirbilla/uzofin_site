@@ -1,0 +1,51 @@
+@use 'abstracts' as *;
+
+.api {
+  overflow-x: clip;
+
+  padding-bottom: fluid(80, 170);
+  isolation: isolate;
+
+  &__content {
+    position: relative;
+    z-index: z('content');
+    text-align: center;
+  }
+
+  &__title {
+    font-size: fluid(28, 66);
+  }
+
+  &__subtitle {
+    margin-top: rem(10);
+    font-size: fluid(12, 17);
+  }
+
+  &__wires {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: fluid(14, 18);
+  }
+
+  &__lines {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    width: 100vw;
+    translate: -50% -50%;
+  }
+
+  &__cta {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -40px -60px;
+      z-index: -1;
+      background: radial-gradient(closest-side, rgba(0, 0, 0, 0.95), transparent);
+    }
+  }
+}

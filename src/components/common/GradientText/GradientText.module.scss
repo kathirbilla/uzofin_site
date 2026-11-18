@@ -1,0 +1,9 @@
+@use 'abstracts' as *;
+
+.gradient-text {
+  @include gradient-text($gradient-brand);
+
+  &--violet {
+    @include gradient-text($gradient-violet);
+  }
+}

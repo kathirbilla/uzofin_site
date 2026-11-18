@@ -1,0 +1,60 @@
+@use 'sass:map';
+@use 'variables' as *;
+@use 'functions' as *;
+
+@mixin mq($bp) {
+  @if not map.has-key($breakpoints, $bp) {
+    @error 'Unknown breakpoint `#{$bp}`.';
+  }
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin gradient-text($gradient: $gradient-brand) {
+  background-image: $gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin glass($bg: rgba(255, 255, 255, 0.05), $blur: 16px) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin focus-ring($color: $color-sky) {
+  outline: 2px solid $color;
+  outline-offset: 3px;
+}
+
+@mixin caption {
+  font-size: fluid(10, 13);
+  letter-spacing: 0.02em;
+  font-weight: $font-weight-regular;
+  text-transform: uppercase;
+  color: $color-muted;
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}

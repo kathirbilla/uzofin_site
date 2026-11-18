@@ -1,0 +1,19 @@
+@use 'abstracts' as *;
+
+.logo {
+  display: inline-flex;
+  flex-shrink: 0;
+
+  &__img {
+    display: block;
+    height: auto;
+  }
+
+  &--md &__img {
+    width: fluid(84, 107);
+  }
+
+  &--lg &__img {
+    width: fluid(150, 188);
+  }
+}

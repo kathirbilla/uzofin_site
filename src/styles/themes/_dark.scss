@@ -1,0 +1,26 @@
+@use '../abstracts' as *;
+
+:root {
+  color-scheme: dark;
+
+  --color-bg: #{$color-bg};
+  --color-text: #{$color-text};
+  --color-muted: #{$color-muted};
+  --color-border: #{$color-border};
+  --color-accent: #{$color-purple};
+
+  --header-height: #{$header-height};
+  --gutter: #{rem(16)};
+
+  @include mq(md) {
+    --gutter: #{rem(32)};
+  }
+
+  @include mq(lg) {
+    --header-height: #{rem(94)};
+  }
+
+  @include mq(xl) {
+    --gutter: #{rem(40)};
+  }
+}

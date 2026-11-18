@@ -1,0 +1,18 @@
+.ribbon-sphere {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+
+  &__stage {
+    cursor: pointer;
+    filter: drop-shadow(0 30px 60px rgba(236, 72, 153, 0.18));
+    will-change: transform;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    will-change: transform;
+  }
+}

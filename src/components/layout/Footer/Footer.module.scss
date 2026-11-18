@@ -1,0 +1,102 @@
+@use 'abstracts' as *;
+
+.footer {
+  position: relative;
+  padding-top: fluid(32, 56);
+
+  &__top {
+    display: grid;
+    gap: rem(48);
+    padding-top: fluid(32, 44);
+    border-top: 1px solid #37ccf7;
+
+    @include mq(lg) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+      gap: rem(64);
+    }
+  }
+
+  &__about {
+    max-width: rem(300);
+    margin-top: rem(20);
+    font-size: fluid(11, 12);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  &__columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(32) rem(24);
+
+    @include mq(md) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  &__title {
+    margin-bottom: rem(14);
+    font-size: rem(12);
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $color-blue;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(8);
+  }
+
+  &__link,
+  &__social {
+    font-size: fluid(11, 12);
+    color: rgba(255, 255, 255, 0.55);
+    transition: color $duration-fast;
+
+    @include hover {
+      color: $color-white;
+    }
+  }
+
+  &__social {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(8);
+  }
+
+  &__social-icon {
+    @include flex-center;
+    width: rem(26);
+    height: rem(26);
+    border-radius: 50%;
+    background: rgba($color-purple, 0.22);
+    color: $color-white;
+    transition: background-color $duration-fast;
+
+    svg {
+      width: rem(13);
+      height: rem(13);
+    }
+  }
+
+  &__social:hover &__social-icon {
+    background: rgba($color-purple, 0.5);
+  }
+
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: rem(8);
+    margin-top: fluid(40, 56);
+    padding-block: rem(20);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    p {
+      font-size: rem(11);
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}

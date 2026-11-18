@@ -1,0 +1,47 @@
+@use 'abstracts' as *;
+
+.stat {
+  text-align: center;
+
+  @include mq(lg) {
+    text-align: left;
+  }
+
+  &__value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: rem(12);
+    font-size: fluid(48, 88);
+    font-weight: $font-weight-light;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+
+    @include mq(lg) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__extra {
+    font-size: 0.5em;
+  }
+
+  &__label {
+    margin-top: rem(10);
+    @include caption;
+  }
+
+  &--violet &__value > * {
+    @include gradient-text(linear-gradient(90deg, #8b5cf6, #a78bfa 50%, #60a5fa));
+  }
+
+  &--blue &__value > * {
+    @include gradient-text(linear-gradient(90deg, #38bdf8, #60a5fa 60%, #818cf8));
+  }
+
+  &--teal &__value > * {
+    @include gradient-text(linear-gradient(90deg, #14b8a6, #2dd4bf 50%, #5eead4));
+  }
+}

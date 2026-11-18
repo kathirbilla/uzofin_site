@@ -1,0 +1,73 @@
+@use 'abstracts' as *;
+
+.industry {
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(180deg, #07050b 0%, #0f0b18 55%, #040508 100%);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 70vw;
+    aspect-ratio: 1.4;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: industry-drift 18s ease-in-out infinite alternate;
+  }
+
+  &::before {
+    top: -15%;
+    left: -20%;
+    background: radial-gradient(closest-side, rgba(#4a0c78, 0.75), transparent);
+  }
+
+  &::after {
+    top: 5%;
+    right: -20%;
+    background: radial-gradient(closest-side, rgba(#0d3a44, 0.7), rgba(#101728, 0.4) 60%, transparent);
+    animation-direction: alternate-reverse;
+  }
+
+  &__marquee {
+    margin-top: fluid(16, 33);
+    padding-block: rem(24) fluid(72, 148);
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
+  &__group {
+    display: flex;
+    align-items: flex-start;
+    gap: fluid(16, 29);
+    padding-right: fluid(16, 29);
+  }
+
+  &__item {
+    flex-shrink: 0;
+    will-change: transform;
+  }
+
+  @include reduced-motion {
+    &__marquee {
+      overflow-x: auto;
+    }
+  }
+}
+
+@keyframes industry-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(45vw, 10%) scale(1.15);
+  }
+}

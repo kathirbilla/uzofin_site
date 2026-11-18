@@ -1,0 +1,310 @@
+@use 'abstracts' as *;
+
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: z('header');
+  height: var(--header-height);
+
+  @include glass(rgba(0, 0, 0, 0.62), 16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition:
+    background-color $duration-base $ease-out,
+    border-color $duration-base $ease-out,
+    backdrop-filter $duration-base $ease-out;
+
+  &--scrolled {
+    @include glass(rgba(0, 0, 0, 0.82), 18px);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &--menu-open {
+    background: $color-black;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem(16);
+    height: 100%;
+    max-width: none;
+    padding-inline: fluid(16, 44);
+  }
+
+  &__logo,
+  &__actions {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+
+    @include mq(lg) {
+      gap: rem(16);
+    }
+  }
+
+  &__actions &__cta {
+    display: none;
+
+    @include mq(md) {
+      display: inline-flex;
+    }
+  }
+}
+
+.nav {
+  display: none;
+
+  @include mq(lg) {
+    display: block;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: fluid(20, 32, 1024, 1440);
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__item--dropdown:hover &__dropdown,
+  &__item--dropdown:focus-within &__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+
+  &__item--dropdown:hover &__chevron,
+  &__item--dropdown:focus-within &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(6);
+    position: relative;
+    padding-block: rem(8);
+    font-size: fluid(14, 15, 1024, 1440);
+    color: rgba(255, 255, 255, 0.78);
+    transition: color $duration-fast;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: $gradient-brand;
+      transform: scaleX(0);
+      transition: transform $duration-base $ease-out;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $color-white;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &--active {
+      color: $color-white;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &__chevron {
+    width: rem(16);
+    height: rem(16);
+    transition: transform $duration-base $ease-out;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + #{rem(10)});
+    left: 50%;
+    min-width: rem(200);
+    padding: rem(8);
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    @include glass(rgba(14, 10, 24, 0.92), 18px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 8px);
+    transition:
+      opacity $duration-base $ease-out,
+      transform $duration-base $ease-out,
+      visibility $duration-base;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: rem(-12) 0 auto;
+      height: rem(12);
+    }
+  }
+
+  &__dropdown-link {
+    display: block;
+    padding: rem(10) rem(12);
+    border-radius: $radius-sm;
+    font-size: rem(13);
+    color: $color-muted;
+    transition:
+      color $duration-fast,
+      background-color $duration-fast;
+
+    @include hover {
+      color: $color-white;
+      background: rgba($color-purple, 0.15);
+    }
+  }
+}
+
+.burger {
+  @include flex-center(column);
+  gap: rem(5);
+  width: rem(40);
+  height: rem(40);
+  border: 1px solid $color-border;
+  border-radius: 50%;
+
+  @include mq(lg) {
+    display: none;
+  }
+
+  &__line {
+    width: rem(16);
+    height: 1.5px;
+    background: $color-white;
+    border-radius: 2px;
+    transition:
+      transform $duration-base $ease-out,
+      opacity $duration-fast;
+  }
+
+  &--active &__line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  &--active &__line:nth-child(2) {
+    opacity: 0;
+  }
+
+  &--active &__line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  padding: calc(var(--header-height) + #{rem(24)}) var(--gutter) rem(32);
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba($color-purple-deep, 0.35), transparent 60%),
+    $color-black;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  clip-path: circle(0% at calc(100% - 40px) 36px);
+  transition:
+    clip-path $duration-slow $ease-in-out,
+    opacity $duration-slow,
+    visibility $duration-slow;
+
+  @include mq(lg) {
+    display: none;
+  }
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    clip-path: circle(150% at calc(100% - 40px) 36px);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: rem(4);
+  }
+
+  &__item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity $duration-slow $ease-out,
+      transform $duration-slow $ease-out;
+  }
+
+  &--open &__item {
+    opacity: 1;
+    transform: none;
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        transition-delay: 0.15s + $i * 0.06s;
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: rem(16) 0;
+    border-bottom: 1px solid $color-border;
+    font-size: fluid(22, 28);
+    color: $color-white;
+    text-align: left;
+  }
+
+  &__chevron {
+    width: rem(20);
+    height: rem(20);
+    transition: transform $duration-base $ease-out;
+  }
+
+  &__link--open &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__sub {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $duration-base $ease-out;
+
+    &--open {
+      max-height: rem(240);
+    }
+
+    > li:first-child {
+      padding-top: rem(8);
+    }
+  }
+
+  &__sublink {
+    display: block;
+    padding: rem(10) rem(16);
+    color: $color-muted;
+    font-size: rem(16);
+  }
+
+  &__cta {
+    margin-top: rem(32);
+  }
+}

@@ -1,0 +1,54 @@
+@use 'abstracts' as *;
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: calc(var(--header-height) + #{fluid(56, 130)});
+  padding-bottom: fluid(56, 110);
+
+  &__content {
+    position: relative;
+    z-index: z('content');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: rem(1400);
+    text-align: center;
+  }
+
+  &__title {
+    font-size: fluid(30, 62);
+    font-weight: $font-weight-regular;
+
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+
+  &__mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+  }
+
+  &__line {
+    display: block;
+  }
+
+  &__subtitle {
+    max-width: rem(880);
+    margin-top: fluid(16, 32);
+    font-size: fluid(14, 21.5);
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem(14) fluid(14, 30);
+    margin-top: fluid(24, 32);
+  }
+}

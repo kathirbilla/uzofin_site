@@ -1,0 +1,104 @@
+@use 'abstracts' as *;
+
+.industry-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fluid(280, 430);
+  min-height: fluid(240, 298);
+
+  padding: fluid(20, 30) fluid(16, 26);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: fluid(14, 18);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  text-align: center;
+  overflow: hidden;
+
+  transition:
+    border-color $duration-base $ease-out,
+    background-color $duration-base $ease-out,
+    box-shadow $duration-base $ease-out;
+
+  &__title {
+    font-size: fluid(18, 28);
+    font-weight: $font-weight-regular;
+    line-height: 1.35;
+    color: $color-white;
+
+    text-shadow:
+      0 0 1px #8a01f6,
+      0 0 2px #8a01f6,
+      0 0 6px rgba(#8a01f6, 0.55);
+  }
+
+  &__text {
+    margin-top: rem(2);
+    font-size: fluid(14, 20.6);
+    line-height: 1.5;
+    color: #d4d2d5;
+  }
+
+  &__link {
+    color: $color-white;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    transition: color $duration-fast;
+
+    &:hover {
+      color: #e151ff;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: fluid(14, 22);
+    bottom: fluid(14, 22);
+    width: fluid(32, 45);
+    height: fluid(32, 45);
+    color: #8001e4;
+    filter: drop-shadow(0 0 8px rgba(#8a01f6, 0.45));
+    opacity: 0;
+    transform: translateX(140%) rotate(90deg);
+    transition:
+      transform 0.6s $ease-out,
+      opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  &__icon-ring,
+  &__icon-check {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 0.6s $ease-out;
+  }
+
+  &__icon-check {
+    transition-delay: 0.25s;
+  }
+
+  &:hover,
+  &:focus-within {
+    border-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 24px 60px -30px rgba(#8a01f6, 0.6);
+
+    .industry-card__icon {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg);
+    }
+
+    .industry-card__icon-ring,
+    .industry-card__icon-check {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @include reduced-motion {
+    &__icon {
+      transform: none;
+    }
+  }
+}

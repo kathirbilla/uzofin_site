@@ -1,0 +1,46 @@
+@use 'abstracts' as *;
+
+.cta {
+  &__box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: fluid(48, 72);
+    text-align: center;
+  }
+
+  &__title {
+    position: relative;
+    z-index: 1;
+    font-size: fluid(34, 83);
+    font-weight: $font-weight-light;
+    line-height: 1.1;
+
+    > span {
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &__actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem(12) rem(16);
+    margin-top: fluid(32, 64);
+  }
+
+  &__shape--top {
+    top: fluid(16, 30);
+    left: 50%;
+    margin-left: fluid(20, 40);
+  }
+
+  &__shape--bottom {
+    top: 48%;
+    left: 50%;
+    margin-left: calc(-1 * #{fluid(170, 365)});
+  }
+}

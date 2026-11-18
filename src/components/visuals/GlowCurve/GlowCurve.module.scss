@@ -1,0 +1,12 @@
+.glow-curve {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 104%;
+  max-width: none;
+  height: auto;
+  translate: -50% 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  user-select: none;
+}

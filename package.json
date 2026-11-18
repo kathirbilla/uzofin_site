@@ -1,0 +1,42 @@
+{
+  "name": "uzofin-landing",
+  "private": true,
+  "version": "1.0.0",
+  "description": "UzOFin – AI-powered banking & payments landing page (React + Vite + SCSS + GSAP + Three.js)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "generate-pwa-assets": "pwa-assets-generator"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@vite-pwa/assets-generator": "^1.0.4",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.11.0",
+    "sass": "^1.80.6",
+    "vite": "^5.4.10",
+    "vite-plugin-pwa": "^2.0.0"
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions",
+    "iOS >= 15"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

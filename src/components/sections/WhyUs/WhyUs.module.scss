@@ -1,0 +1,7 @@
+@use 'abstracts' as *;
+
+.why {
+  &__rows {
+    margin-top: fluid(32, 56);
+  }
+}
