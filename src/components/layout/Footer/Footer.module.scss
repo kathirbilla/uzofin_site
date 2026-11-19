@@ -5,6 +5,7 @@
   padding-top: fluid(32, 56);
 
   &__top {
+    position: relative;
     display: grid;
     gap: rem(48);
     padding-top: fluid(32, 44);
@@ -97,6 +98,78 @@
     p {
       font-size: rem(11);
       color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  // Mobile/tablet: last item of the footer links, centered at the bottom.
+  // Desktop: right edge of the footer, vertically centered in the links section.
+  &__to-top {
+    @include flex-center;
+    position: relative;
+    order: 1; // render after the logo + link columns in the grid
+    justify-self: center;
+    z-index: 2;
+    width: rem(46);
+    height: rem(46);
+
+    @include mq(lg) {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin-top: rem(-23); // half the height → true vertical center
+    }
+    border: 1px solid rgba($color-purple, 0.5);
+    border-radius: 50%;
+    // solid base so the divider line doesn't show through the button
+    background: linear-gradient(rgba($color-purple, 0.22), rgba($color-purple, 0.22)), #000;
+    color: $color-white;
+    cursor: pointer;
+    transition:
+      background-color $duration-fast,
+      transform $duration-fast,
+      box-shadow $duration-fast;
+
+    svg {
+      width: rem(22);
+      height: rem(22);
+    }
+
+    // Tooltip shown just above the button on hover / keyboard focus
+    &::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + #{rem(10)});
+      left: 50%;
+      padding: rem(6) rem(10);
+      border-radius: rem(6);
+      background: $color-white;
+      color: #111;
+      font-size: rem(11);
+      font-weight: $font-weight-semibold;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, 4px);
+      transition:
+        opacity $duration-fast,
+        transform $duration-fast;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @include hover {
+      background: $color-purple-deep;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba($color-purple, 0.45);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 3px;
     }
   }
 }
